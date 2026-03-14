@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Learning Async</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+
+    <script src="project1.js">
+
+// /
+// **
+//  * Javascript Properties :-
+//  * 1) Synchronous (ek code execute hoga fir dusra , teesra sequentially...or execute one line of code at a time)
+//  * 2) Single threaded
+//  * 
+//  * Each opearation wait for the last one to complete.
+//  * 
+//  * Blocking Code :- Blocks the flow of program.
+//  * 
+//  * 
+//  * Non Blocking Code :- Does not block the execution.
+
+// setTimeout(()=>{console.log("ankur")},2000); // it runs only once.
+
+// function sayMyName (){ // another way to write
+// console.log("ankur3")
+// }
+// setTimeout(sayMyName,2000)
+
+// function changeHeading (){ // another way to write
+// document.querySelector('h1').innerHTML='Ankur raj'
+// }
+// setTimeout(changeHeading,2000);
+
+// const changeMe = setTimeout(changeHeading,2000);
+
+
+// how to stop setTimeout :-
+
+// document.querySelector('#stop').addEventListener('click',()=>{
+//     console.log("stopped");
+// clearTimeout(changeMe)
+// });
+
+
+// setInterval :-
+
+// setInterval(()=>{console.log("ankur 2",Date.now())},2000); // contineusly prints in the interval of 2 seconds.
+
+// const sayDate = ()=>{console.log("ankur 4",Date.now())}; // contineusly prints in the interval of 2 seconds.
+
+// // setInterval(sayDate,2000)
+// const changeInterval = setInterval(sayDate,2000)
+
+// clearInterval(changeInterval);
+
+    </script>
+</body>
+</html>
+
+
+
+

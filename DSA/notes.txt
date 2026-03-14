@@ -1,0 +1,35 @@
+Decimal to Binary conversion :-
+
+int answer = 0;
+int bit = n & 1 ( yha se last bit of n nikal jayega . if n&1=1 means 1 hai or if n&1=0 means 0 hai last bit)
+answer = (bit*10^i) + answer -----(reverse wala formula).
+n = n>>1 (ab jab last bit nikal gya then fir usko right shift bhi karna hai so that agle bit pe jaa sake)
+
+
+Case 1:- (jab same flow me number chahiye)
+
+answer = (answer*10) + bit
+
+Case 2:- (jab reverse flow me)
+
+answer = (bit*10^i) + answer
+
+Case 3:- (if n is -ve)
+
+step1:- ignore -ve for now
+step2:- now find the 2's compliment of nikal 
+
+
+How to find 2's compliment:-
+
+first find the 1's compliment and then add 1 in to this.
+
+***----Important Formulas----***
+
+int lastDigit = num % 10;  // Extract the last digit
+    
+    num = num / 10; // to remove the last digit
+
+
+
+

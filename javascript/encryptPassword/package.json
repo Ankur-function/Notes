@@ -1,0 +1,14 @@
+{
+  "name": "encryptpassword",
+  "version": "1.0.0",
+  "description": "",
+  "main": "debug-cryptr-v4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cryptr": "^4.0.2"
+  }
+}

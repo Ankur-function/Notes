@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Learning two</title>
+</head>
+<body style="background-color: #212121; color: #fff">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent');// selecting via class
+    // console.log(parent);
+    // console.log(parent.children);// gives children inside HtmlCollection so it will support for , forEach and for rest things we can easily convert it into array and do our tasks.
+    // console.log(parent.children[1].innerHTML);
+    
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     const element = parent.children[i].innerHTML;
+    //     console.log(element);
+    // }
+    // parent.children[1].style.color = 'orange'
+    // console.log(parent.firstElementChild.outerHTML);
+    // console.log(parent.lastElementChild.outerHTML);
+
+    const dayOne = document.querySelector('.day')
+    // console.log(dayOne.outerHTML);
+    // console.log(dayOne.parentElement.outerHTML);// gives parent element
+    // console.log(dayOne.nextElementSibling.outerHTML);// gives next element
+    console.log("NODES: ", parent.childNodes);
+
+</script>
+<!--
+    console.log("NODES: ", parent.childNodes);
+this line will give below logs see,
+NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+0
+: 
+text
+1
+: 
+div.day
+2
+: 
+text
+3
+: 
+div.day
+4
+: 
+text
+5
+: 
+div.day
+6
+: 
+text
+7
+: 
+div.day
+8
+: 
+text
+length
+: 
+9
+[[Prototype]]
+: 
+NodeList
+
+not just days because everything is Node here. like space, comment , enter so it count everything in NodeList.
+-->
+</html>

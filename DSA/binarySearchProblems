@@ -1,0 +1,90 @@
+1. Find the Single Element in a Sorted Array
+You are given a sorted array where every element appears twice except one element which appears once. Find that single element in O(log n) time.
+
+📥 Example:
+arr[] = {1,1,2,2,3,3,4,8,8}
+📤 Output: 4
+
+🧠 Hint: Use binary search with index patterns.
+
+2. Search Insert Position
+Given a sorted array and a target, return the index if the target is found. If not, return the index where it would be if inserted in order.
+
+📥 Example:
+arr[] = {1, 3, 5, 6}, target = 2
+📤 Output: 1
+
+3. Find Position of an Element in Infinite Sorted Array
+You can't use arr.size() because the array is "infinite" (or too large). Implement a modified binary search using bounds expansion.
+
+📥 Example:
+arr[] = infinite sorted, target = 55
+📤 Output: Index of 55
+
+4. Find Minimum Difference Element in Sorted Array
+Given a sorted array and a target, find the element with the minimum absolute difference to the target.
+
+📥 Example:
+arr[] = {1, 3, 8, 10, 15}, target = 12
+📤 Output: 10
+
+5. Next Alphabetically Greater Element
+Given a sorted array of characters, find the smallest character that is strictly greater than the target character. Wrap around allowed.
+
+📥 Example:
+letters[] = {'a', 'c', 'f', 'h'}, target = 'f'
+📤 Output: 'h'
+📥 Example 2: target = 'h' → Output: 'a'
+
+6. Ceiling and Floor in a Sorted Array
+Find the smallest element greater than or equal to the target (Ceiling)
+Also find the largest element less than or equal to the target (Floor)
+
+📥 Example:
+arr[] = {2, 3, 5, 9, 14, 16, 18}, target = 15
+📤 Ceiling: 16, Floor: 14
+
+7. Kth Smallest Element in a Sorted Matrix (Row and Col Wise)
+Matrix where every row and column is sorted. Find the k-th smallest element using binary search.
+
+📥 Example:
+
+csharp
+Copy
+Edit
+matrix = [
+  [1,  5,  9],
+  [10, 11, 13],
+  [12, 13, 15]
+], k = 8
+📤 Output: 13
+
+8. Find the Rotation Count in Rotated Sorted Array with Duplicates
+Like the rotation count problem, but the array can have duplicates. This makes binary search trickier!
+
+📥 Example:
+arr[] = {2, 2, 2, 3, 4, 2}
+📤 Output: 5 (Index of minimum element)
+
+9. Find Peak Element in a 2D Array
+Similar to 1D peak element, but on a 2D matrix. You are allowed to move up/down/left/right from any cell.
+
+📥 Example:
+
+csharp
+Copy
+Edit
+matrix = [
+  [10, 8, 10, 10],
+  [14, 13, 12, 11],
+  [15, 9, 11, 21],
+  [16, 17, 19, 20]
+]
+📤 Output: Any peak value (like 21)
+
+10. Find K Closest Elements
+Given a sorted array, a target, and integer k, return the k closest elements to the target.
+
+📥 Example:
+arr[] = {1, 2, 3, 4, 5}, k = 4, target = 3
+📤 Output: [1, 2, 3, 4]
