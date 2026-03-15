@@ -2,6 +2,10 @@
  * Steps to go to mongoDB shell
  * 1) mongosh
  * 2) now choose you db.(e.g use mydb)
+ * Practice resources link :-
+ * https://www.w3resource.com/mongodb-exercises/
+ * https://www.geeksforgeeks.org/mongodb/mongodb-exercises/
+ * https://www.w3schools.com/mongodb/mongodb_exercises.php
  */
 
 // 1) how to insert any doc
@@ -34,6 +38,12 @@ c) e.g. collectionName.find().limit(5) // works well here
 
 // 4) update one doc.
 db.students.updateOne({name:"Shyam"},{$set:{idCards:{hasPanCard:false, hasAdhaarcard:true}}})
+
+//How to search in array of strings :-
+db.students.find({hobbies:'Travel'})     //here it looks like this see, hobbies: [ 'Dance', 'Travel', 'Singing' ], it will automatically search inside all items in an array.
+
+// How to search in Nested document(objects) :-
+db.students.find({'idCards.hasPanCard':true}); // yha pe, idCards: { hasPanCard: true, hasAdhaarCard: false } aisa present hai doc me
 
 /**
  * here while updating we can add new fields too. and {name:"Shyam"} is a filter in which doc i want to update.
@@ -125,7 +135,7 @@ db.runCommand({
 
 // 12) comparison operators {$eq,$ne,$lte,$lt,$in,$nin}
 /**
- *  // sample data for below queries:-
+  // sample data for below queries:-
  [
  {
     _id: ObjectId('697b58cdee1ea0c61c69e33b'),
@@ -166,8 +176,13 @@ db.students.find({hasMacbook:{$type:"bool"}});
  // 15) Evaluation query operators($expr,$jsonSchema,$regex,$text,$mod)
 
  /**
+  * VVI
   $expr:- It allows mongodb expression as it's argument and returns the result of the expression. we can use this operator to perform comparisons,
   arithematic operations, and other types of expressions within the query pipeline.
+
+  You only need $expr when:-
+1) You are comparing Field A to Field B (e.g., { $expr: { $gt: ["$spent", "$budget"] } }).
+2) You are doing Logic on an array length (like your $size example).
   */
  db.collecitonName.find({
     $expr:{
@@ -185,7 +200,7 @@ db.students.find({hasMacbook:{$type:"bool"}});
   */
 db.students.find({name:{$regex:'^N'}});// find names that start with 'N'
 /**
-  $text:- To use the $text operator,you must create a text index on the fields you want to search.A text index allows to search for specific words and phrases
+  $text:- To use the $text operator,you must create a text index on the fields you want to search.a text index allows to search for specific words and phrases
   in the indexed fields and return documents that match the search criteria.
   (means $text opeartor wahi pe use hoga, ussi field pe use hoga jis field ko humne text index kiya hua hai)
   */
@@ -204,6 +219,12 @@ db.collectionName.find({
 // or find all the students whose age is divided by 5.
 
 db.students.find({age:{$mod:[5,0]}});
+/**
+* remember $mod operator behaves totally different when it used inside .aggregation([]). 
+ * inside .aggregation it simply calculates it value and return it for e.g. 
+ * mod:['$age',6] // means yha age field ki value ko 6 se divide karo and answer return kar do.
+ * for more knowledge ask AI on $mod normally vs inside .aggregation . 
+ */
 
 // 16) Quering arrays in mongodb
 [// sample data for pratice
@@ -257,7 +278,7 @@ db.students.find({$and:[{'experience.company':'Amazon'},{'experience.duration':{
 
 // see above data and query. here i wrote company should be amazon and duration should be gte 10. but still above query returns above data.
 // so actually what is happening here is $and operators search company names in the students collection and when it matches with 'amazon' then 
-// it selects that docuement and then as per next exp i.e.$gte:10 it searches in the complete doc and not with that specific object, where amazon is present.
+// it selects that docuement and then as per next exp i.e.$gte:10 it searches in the complete doc and not within that specific object, where amazon is present.
 
 
 // so to match query in that specific element or object we need to use different query i.e. $elemMatch
@@ -273,7 +294,7 @@ db.students.find({}).sort({age:-1});// jis bhi field se sort karna ho usko sort 
 // $inc,$min,$max,$mul,$unset,$rename,upsert :-
 
 //increase age of all students by 2.
-db.students.updateMany({},{$inc:{age:-2}});// first one is filter so it will decrease all students age by 2
+db.students.updateMany({},{$inc:{age:-2}});// first one is filter so it will decrease all students age by 2 to increase put 2.
 
 //increase age of robert to 30 but only if his age is less than it.
 db.students.updateOne({name:'Robert'},{$max:{age:30}});// diff between $set and $max is that max will only update if robert current age is less than 30 but $set will update in any condition.
@@ -320,7 +341,7 @@ db.students.updateOne({name:'Robert'},{$push:{experience:{company:'Meta',duratio
 db.students.updateOne({name:'Robert'},{$addToSet:{experience:{company:'Meta',duration:6}}}); // ye add nhi karega agar bilkul same object pehle se hoga experience array me to
 
 //$pull
-db.studens.updateOne({name:'Robert'},{$pull:{experience:{company:'Meta',duration:6}}})// ye saara aisa doc ko remove kar dega experience array se
+db.studens.updateOne({name:'Robert'},{$pull:{experience:{company:'Meta',duration:6}}})// ye saara aisa object ko remove kar dega experience array se
 
 //$pop
 db.students.updateOne({name:'Robert'},{$pop:{experience:1}})// ye last element ho hata dega experience array se. agar -1 kiye to first wale ko.
@@ -359,7 +380,7 @@ db.students.createIndex({age:1}); // creating an index. 1 is for sorting in asce
 db.students.getIndexes();// fetching all indexes.
 db.students.dropIndex("name of the index");// deleting an index.
 
-// 2) Compound indexes :-
+// 2) Compound indexes :-doc
 db.students.createIndex({age:1,gender:1});// here order matters. so sabse pehle sort honge by age and then by gender. 
 
 // Partial Filters Indexes :-
@@ -371,7 +392,7 @@ db.students.createIndex({expires:1},{expireAfterSeconds:3600});// is se ye index
 
 // 4) Multi key indexes :-
 // a multi key index is an index that can be created on an array field.
-db.students.createIndex({hobbies:1});// remember ki array pe indexing karne se space bhut jyada consule hoga.
+db.students.createIndex({hobbies:1});// remember ki array pe indexing karne se space bhut jyada consume hoga.
 
 //3) Text index :-
 /**
@@ -387,13 +408,13 @@ for e.g. above data hai isme main chahta hu ki bss main 'manager' search karu au
 just like google me search krte time suggestions aate hai. 
 
 Note :-
-1) single text index per collection.(means ek collection me sirf ek hi text index banega but remember uss ek index me hi hum multiple fields kon include
+1) single text index per collection.(means ek collection me sirf ek hi text index banega but remember uss ek index me hi hum multiple fields ko include
    kar sakte hai).
 2) Tokenization and Stemming :- means suffix letters hata deta hai words se. e.g. singing---->sing, hobbies---->hobby, games----->game.
 3) Relevance Score :-    
  */
 db.students.createIndex({bio:"text",name:"text"});// creating text indexes and here i have added multiple fields in to one index.
-db.students.find({$text:{$search:"teacher"}}); // yha $text means mujhe text index me search karna hai. aur jisko search karn hai wo $search ke saamne.
+db.students.find({$text:{$search:"teacher"}}); // yha $text means mujhe text index me search karna hai. aur jisko search karna hai wo $search ke saamne.
 
 
 /**
@@ -417,6 +438,8 @@ db.students.aggregate([{$group:{_id:"$age"}}]);
 
 //$group :- $group :{_id:wo field jiss se group karna hai,field 1(jo result me chahiye): expression, field 2(jo result me chahiye): expression..........etc};
 
+// Use $group: If you want to reduce many documents into a few categories (or just one total).
+
 // group teachers by age and show all students names per age group
 db.students.aggregate([{$group:{_id:"$age", names:{$push:"$name"}}}]);// here names is an array. hum ab ek group me aa gye hai, now uss group ke andar 
 // jitne bhi documents hai sabse name ki value nikal kar names naam ke array me push karte jaa rahe hai.
@@ -429,7 +452,10 @@ db.students.aggregate([{$match:{gender:'male'}},{$group:{_id:"$age",totalCount:{
 // jo ki 13 saal ke hai.. fir group banaye unn sab ka jo ki 13 saal ke hai....fir count  kar liye.
 // the value of sum is 1, which means that for each document in the group, the value of "number" will be increamented by 1.
 
-//give a count per age of male students and sort them by count in desc manner.
+// give a sum of ages by each group.
+db.students.aggregate([{$group:{_id:'$age',sumOfAgesInEachAgeGroup:{$sum:{$toDouble:'$age'}}}}]);
+
+//give a count per age of female students and sort them by count in desc manner.
 db.students.aggregate([{$match:{gender:"female"}},{$group:{_id:"$age", studentsCount:{$sum:1}}},{$sort:{studentsCount:-1}}]);
 
 // find max of above query. means studentsCount jo upar nikale hai uska max nikalo.
@@ -499,11 +525,8 @@ db.students.aggregate([{$unwind:"$hobbies"},{$group:{_id:null, hobbbiesList:{$ad
   // Note :- ye above question me kuch condition hai so jab bhi condition aaye to filter operator ke baare me sochna hai.
   
   // below solution is given in the video which is wrong i will do below one later.
-  db.students.aggregate([{$group:{_id:null, totalAvgScores:{$avg:{$filter:{input:"$scores",as:"score",cond:{$gt:["$age",30]}}}}}}]); // this solution is wrong
-  //because 1st stage me group kiye so yha pe saara fields hatt jayega except unke jisko ki hum define karte hai $group stage me
-  // fir group ke baad jab stage 2 i.e. totalAvhScores me jab gaye to iske pass to koi field mila hi nahi. to jab filter me $age search 
-  // karne ka try kiya to wha pe 'age' field usko milega hi nhi(kyu ki $group stage me humne dala hi nahi) so above query null or error return karegi
-
+  db.students.aggregate([{$group:{_id:null, totalAvgScores:{$avg:{$filter:{input:"$scores",as:"score",cond:{$gt:["$age",30]}}}}}}]); // this solution is wrong and not working
+  
   // correct solution :-
   db.students.aggregate([{$match:{"age":{$gt:30}}},{$unwind:"$scores"},{$group:{_id:null,totalAvgScores:{$avg:"$scores"}}}]);
 
@@ -693,7 +716,7 @@ db.students.aggregate([{$match:{gender:"male"}},
       $lookup:{
         from:"courses",
         localField:"_id",
-        foreignField:"student_id",
+        foreignField:"student_id",  
         as:"courseDetails"
       }
      },
@@ -811,7 +834,7 @@ db.students.aggregate([{$match:{gender:"male"}},
             so when client requests comes up and main server fails to response due to any failure then at that situation our replica servers wll
             give responses so by doing like this we can avoid faulty behavior because then the client will never know that there was any issue.
 
-            one more use is let's say client requests too many read requests and write requestes to the server so we can redierct read requestes to
+            one more use is let's say client requests too many read requests and write requestes to the server so we can redirect read requestes to
             replica servers to respond so main server can handle write requestes more effictvely.
 
             Sharding :- Method of distributing data across multiple machines.
@@ -838,7 +861,7 @@ db.students.aggregate([{$match:{gender:"male"}},
       Transactions provide data consistency by ensuring that either all operations within the transacitons are commited to the database, or 
       none of them are.
 
-      Transactions are designed ot provide ACID properties.
+      Transactions are designed to provide ACID properties.
 
       Atomicity:- Atomicity gurantees that a transaction is treated as a single, indivisible unit of work.Either all the opeartions within 
                   the transaction are successfully completed and committed or none of them are. If any part of the transaction fails, all 
@@ -870,7 +893,7 @@ db.students.aggregate([{$match:{gender:"male"}},
 
  //  Date queries in mongoDB :-
     
-     db.students.insetOne({name:'Rajpal',dob:ISODate('2000-01-30')});// yha pe UTC aayega i.e. universal timezone
+     db.students.insertOne({name:'Rajpal',dob:ISODate('2000-01-30')});// yha pe UTC aayega i.e. universal timezone
      db.students.insertOne({name:'Ramanujan',dob:ISODate('2005-02-14T14:20:32+02:00')});// yha pe +02:00 ka matlab hai UTC se 2hr aage offset v kehte hai isse.
      
      db.students.find({dob:{$gte: ISODate('2000-12-12')}});
@@ -878,7 +901,7 @@ db.students.aggregate([{$match:{gender:"male"}},
 
 
 // jaise upar $year hai year extract karne ke liye dob se waise hi bhut saare fields hote hai jinko extract kar sakte hai like,
-   $dayofMonth,
+   $dayofMonth,$month
 
     db.collecitonName.aggregate([{
       $project:{
@@ -933,3 +956,85 @@ db.students.aggregate([{$match:{gender:"male"}},
     db.students.aggregate([{$project:{dob:{$dateToString:{format:"%d/%m/%Y %H:%M%S",date:"$dob"}}}}]);
 
     // MongoDB Atlas :-
+
+
+
+
+/*
+ $arrayElemAt :-
+
+ jab bhi kisi array ke andar jaakar kisi index se uski value lana ho.har jagah '.' notation kaam nhi karega like .aggregation ke andar
+ or $project, $expr ke andar to yha pe $arrayElemAt ko hi use karna hoga.
+
+ syntax :- { $arrayElemAt: ["$array_field_name", index] }
+
+ In JavaScript, you get the first item of an array like this: scores[0].
+In MongoDB Aggregation, you do it like this: { $arrayElemAt: ["$scores", 0] }.
+
+You use it whenever you need to "pluck" a specific single value out of an array based on its position (index).
+
+Why not just use dot notation "$scores.0"?
+Outside $expr (Simple Mode): Dot notation works great! db.students.find({"scores.0": 100}).
+Inside $expr or $project (Advanced Mode): Dot notation can sometimes return a "List" of values instead of a single "Number." $arrayElemAt is the "Senior" way because it guarantees you get exactly one single element, which prevents weird bugs in your math.
+
+  */
+
+
+
+    /**
+     Important Doubts :-
+
+1) while writing mongodb queries i always get confuse in this i.e. many times we first write field_name :{$operator_name}
+   and many times we write like $operator_name:{field_name} for e.g. see ,
+  age:{$gt:15,$lt:35}} // here field_name:{$operator_name}
+  {$set:{age:105}} // here $operator_name:{field_name}
+
+and so many fields/operator are like this . i mean i get confuse which syntax for which operator ??? and does it depend upon operator to operator , which syntax to use ??
+
+Answer :-
+
+it feels like the syntax keeps flipping. The "secret" is knowing whether you are Filtering (Querying) or Updating/Transforming.
+
+1. Field First: { field: { $operator: value } }
+Used for: Filtering/Finding data.
+Think of this as "Targeting." You point at a column (field) and then apply a condition to it.
+Purpose: To narrow down results.
+Common Operators: $gt, $lt, $in, $ne, $exists.
+English logic: "Find students where age is greater than 20."
+
+
+2. Operator First: { $operator: { field: value } }
+Used for: Updating or Aggregating.
+Think of this as "Action." You are telling MongoDB to perform a specific command on a field.
+Purpose: To change data or group it.
+Common Operators: $set, $inc, $push, $rename, $match, $group.
+English logic: "Set the age to 105."
+
+
+The Simple "Mental Map" :-
+If you are...	        Syntax Structure	                                Example
+Searching	            field : { $condition }	                        age: { $gte: 18 }
+Changing	            $action : { field: value }	                    $set: { age: 19 }
+Calculating	          $math : [ "$field", value ]	                    $add: [ "$price", 10 ]
+
+
+Why $expr is the weird one :-
+Remember we talked about $expr? It uses the "Operator First" style even inside a .find() because it’s borrowed from the Aggregation (calculation) engine.
+Normal Find: { age: { $gt: 10 } } (Field first)
+$expr Find: { $expr: { $gt: ["$age", 10] } } (Operator first)
+
+
+How to stop the confusion:-
+Next time you write a query, ask yourself: "Am I looking for something, or am I doing something to it?"
+Looking? Field first.
+Doing? Operator first.
+
+Exception :-
+
+Logical operators like $and,$or,$nor :-
+
+Logical Operators are containers. They don't belong to a single field; they join multiple "Field First" queries together.
+
+
+
+     */

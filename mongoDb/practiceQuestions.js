@@ -63,3 +63,38 @@ db.cars.aggregate([{$project:{'model':1,price_in_lakhs:{$divide:['$price',100000
 
 // calculate total service cost of each hyundai car.
 db.cars.aggregate([{$match:{'maker':'Hyundai'}},{$project:{total_service_cost:{$sum:"$service_history.cost"}}}]);
+
+//------------------------------------------More Problems using students collection ------------------------------------------
+
+/**
+ * VVI
+ Find all students who have exactly the same number of hobbies as their age divided by 10.
+ */
+
+ /**
+  Find students where their first job duration (at index 0) is greater than their second job duration (at index 1).
+  */
+
+/*
+Find students where:
+If they are 'male', their age must be over 40.
+If they are 'female', their age must be over 30.
+*/
+
+/**
+ Find students where the SUM of their first two scores is greater than 100.
+ */
+
+ //-----------------------------------------------------------$filter (use students collections)--------------------------------------------------------------------
+
+ /**
+  1) Find all students and create a new field called passingScores that only contains numbers from the scores array that are greater than or equal to 40.
+
+  2) Inside the experience array, filter out any job where the duration is less than 1 year.
+
+  3) From the coursesWithDetails array, only keep the courses that have the name "mongoDB" or "nodeJS".
+
+  4) Find students and return only their hobbies that start with the letter "S" (like "Singing" or "Surfing").
+
+  5) Filter the scores array to only keep values that are greater than the student's own average score.
+  */
