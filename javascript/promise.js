@@ -91,7 +91,7 @@ async function getAllUsers(){
 try {
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
 
-  const data = await response.json();// this gives a promise. and yha response.json() ko bhi convert hone me time lagta hai so isko bhi yha pe await karna hoga. yaa fir below .then ke method se kar lo 
+  const data = await response.json();// this gives a promise. and yha response.json() ko bhi convert hone me time lagta hai so ye bhi promise hi return karta hai so isko bhi yha pe await karna hoga. yaa fir below .then ke method se kar lo 
 //   data.then((value)=>{// if you don't want to use await in the above line
 //   console.log(value);
 
