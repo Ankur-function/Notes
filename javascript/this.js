@@ -39,7 +39,7 @@ test()
     name:'Sakshi'
     }
 
-    student.printName.call(student2)// ab this ki value student2 object ho jayegi and ab this student2 ko refer karega.so basically first argument inside 
+    student.printName.call(student2)// ab printName me  this ki value student2 object ho jayegi and ab this student2 ko refer karega.so basically first argument inside 
                                        call reflects this.
     so value of 'this' can be modified using call,apply and bind method.
 
@@ -64,7 +64,7 @@ test()
         }
    }
 }
-obj2.x(); // see yha pe arrow function ke normal function ke andar hai and function ka scope hota hai so yha pe 'this' keyword global object
+obj2.x(); // see yha pe arrow function ek normal function ke andar hai and function ka scope hota hai so yha pe 'this' keyword global object
              ko refer nhi karega instead ye 'x' function se context lega.
 
 8) 'this' keyword inside DOM elements :- reference to the HTML element.
