@@ -1,3 +1,82 @@
+/**
+ 🧠 What is “Scope” in JavaScript?
+
+👉 Scope =
+
+“Where a variable is accessible in your code”
+
+🎯 Types of Scope in JavaScript
+
+There are mainly 3 types:
+
+1. Global Scope
+let a = 10;
+
+👉 a is accessible everywhere
+
+2. Function Scope
+function test() {
+    let b = 20;
+}
+
+👉 b is only accessible inside that function
+
+3. Block Scope (for let and const)
+if (true) {
+    let c = 30;
+}
+
+👉 c is only accessible inside { }
+
+🔥 Now the MOST IMPORTANT PART
+👉 What CREATES scope?
+✅ Creates scope:
+
+1) Functions
+
+2) Blocks ({}) → for let & const
+
+3) Global execution
+
+❌ Does NOT create scope:-
+🚫 Objects
+let obj = {
+    name: "ankur",
+    age: 25
+}
+
+👉 This does NOT create a new scope
+
+🎯 Why?
+
+Because:
+
+Object is just a data structure, not an execution context
+
+🧠 What is an Execution Context?
+
+👉 Execution context =
+
+“Environment where code runs”
+
+Types:
+
+Global Execution Context
+
+Function Execution Context
+
+👉 When JS runs code:
+
+let obj = {
+    printName: () => {}
+}
+
+👉 This runs in:
+
+Global Execution Context
+ */
+
+
 {// curly braces introduces scope.
 }
 

@@ -3,8 +3,6 @@
 
 Think of it like a pronoun in English. If I say "Ankur is eating; he is hungry," "he" refers to Ankur. If I say "The dog is barking; it is loud," "it" refers to the dog. 
 In JS, this changes its "meaning" based on the call site.
-"this" keyword in javascript refers to the object i.e. currently executing the code.It is determined dynamically at runtime 
- based on how a function is invoked.
 
 1) when we write this keyword in global space then this refers to the global object in browser it is called as window.in different differnet 
    runtime environment global space can be different. like for e.g. on browser it is window and in node js environmet it is global etc.
@@ -18,11 +16,67 @@ console.log(this) // it will give undefined if we use strict mode and it will gi
 }
 test()
 
-3) If value of 'this' keyword is undefined or null then 'this' keyword will be replaced by global object (only in case of non strict mode)
+3) this substitution :- in above function test value of this keyword is undefined originally at first and If value of 'this' keyword is undefined or null then 'this' keyword will be replaced by global object (only in case of non strict mode)
+   because of this substitution phenomena in js.
+
+4) function vs method :- when you write a function inside an object then that function is called as method. for e.g.
+
+   let obj = {
+   name:'ankur',
+   role:'developer',
+   bio: function(){ // this bio is called as method of the obj object.
+   // anything here
+   }
+   }
+
+5) const student = {
+    name:'Ankur',
+    printName: function(){
+    console.log(this.name)
+    }
+}
+    const student2 = {
+    name:'Sakshi'
+    }
+
+    student.printName.call(student2)// ab this ki value student2 object ho jayegi and ab this student2 ko refer karega.so basically first argument inside 
+                                       call reflects this.
+    so value of 'this' can be modified using call,apply and bind method.
+
+6) Arrow functions don't have their own 'this' keyword. it retains this value from enclosing lexical context. for e.g.
+
+ let obj = {
+    name:'ankur',
+    printName: ()=>{
+        console.log(this.name);
+    }
+ }
+ obj.printName(); // undefind because remember object ka koi scope nhi hota hai so iske upar to global object hi bacha and global object me to name
+                     property hai nhi so that's why undefined.
+
+7) const obj2 = {
+   a:20,
+   x: function(){
+   console.log(this);
+   //enclosing lexical context
+      const y = ()=>{
+        console.log(this);
+        }
+   }
+}
+obj2.x(); // see yha pe arrow function ke normal function ke andar hai and function ka scope hota hai so yha pe 'this' keyword global object
+             ko refer nhi karega instead ye 'x' function se context lega.
+
+8) 'this' keyword inside DOM elements :- reference to the HTML element.
+
+"this" keyword in javascript refers to the object i.e. currently executing the code.It is determined dynamically at runtime 
+ based on how a function is invoked.
 
  note :- this keyword in arrow function will not behave as per above defination instead. arrow function ke case me this keyword
          inherit kar lega scope se. means arrow function jaha par likha hua hai waha pe uss scope me this ki kya value hai wo le
          lega this keyword.
+         
+Note :- Arrow function does NOT care where it is written syntactically. It only cares about which execution context is active when it is created
 
 "this" in normal function vs arrow function :-
 
@@ -58,6 +112,8 @@ person.arrowFunction();
  property defined in the global object. 
  */
 
+
+ /**
  //Example :-
 
  // using regular function :-
@@ -82,7 +138,7 @@ person.arrowFunction();
  }
 person2.intro();
 
-/**
+
 EXACT REASON WHY USING REGULAR FUNCTION FAILED IN ABOVE EXAMPLE :-
 
  🔍 Step 1: How intro() is called
