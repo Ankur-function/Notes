@@ -85,7 +85,7 @@ If they are 'female', their age must be over 30.
  Find students where the SUM of their first two scores is greater than 100.
  */
 
- //-----------------------------------------------------------$filter (use students collections)--------------------------------------------------------------------
+ //-----------------------------------------------------------$filter (use students collection)--------------------------------------------------------------------
 
  /**
   1) Find all students and create a new field called passingScores that only contains numbers from the scores array that are greater than or equal to 40.
@@ -98,3 +98,121 @@ If they are 'female', their age must be over 30.
 
   5) Filter the scores array to only keep values that are greater than the student's own average score.
   */
+
+  //------------------------------------------------------------Mixed operators(use students and course collections)---------------------------------------------------------
+
+  /**
+   1) Course Count Category
+
+Return:-
+name
+courseCategory (fetch from course collection)
+
+Rules:-
+<2 → Beginner
+<4 → Intermediate
+>=4 → Advanced
+
+👉 Use $switch
+
+
+
+{
+    _id: ObjectId('697eef86ee1ea0c61c69e341'),
+    name: 'Nina',
+    hobbies: [ 'cooking', 'Painting' ],
+    idCards: { hasPanCard: true, hasAdhaarCard: true },
+    bio: 'she is a cto',
+    experience: [ { company: 'Blackbelthelp', duration: 15 } ],
+    age: 37,
+    gender: 'female',
+    coursesWithDetails: [ { name: 'javascript' }, { name: 'mongoDB' }, { name: 'nodeJS' } ],
+    courses: [ 'nodeJS', 'mongoDB', 'reactJS', 'Docker' ],
+    orders: [
+      { orderId: 9, amount: 13478, status: 'completed' },
+      { orderId: 10, amount: 6600, status: 'pending' }
+    ],
+    profile: {
+      education: { degree: 'B.Arch', year: 2012 },
+      location: { city: 'Chennai', country: 'India' }
+    },
+    subscription: { type: 'silver', validTill: ISODate('2027-06-16T00:00:00.000Z') },
+    tags: [ 'inactive', 'expert' ],
+    courseDetails: [
+      {
+        _id: ObjectId('69bd4457b89973e35e69e32a'),
+        student_id: ObjectId('697eef86ee1ea0c61c69e341'),
+        courses: [ 'nodeJS', 'mongoDB', 'reactJS', 'Docker' ],
+        tags: [ 'inactive', 'beginner' ]
+      },
+{
+        _id: ObjectId('69bd4457b89973e35e69e32a'),
+        student_id: ObjectId('697eef86ee1ea0c61c69e341'),
+        courses: [ 'nodeJS' ],
+        tags: [ 'inactive', 'beginner' ]
+      },
+{
+        _id: ObjectId('69bd4457b89973e35e69e32a'),
+        student_id: ObjectId('697eef86ee1ea0c61c69e341'),
+        courses: [ 'nodeJS', 'mongoDB'],
+        tags: [ 'inactive', 'beginner' ]
+      },
+{
+        _id: ObjectId('69bd4457b89973e35e69e32a'),
+        student_id: ObjectId('697eef86ee1ea0c61c69e341'),
+        courses: [ 'nodeJS', 'mongoDB', 'reactJS' ],
+        tags: [ 'inactive', 'beginner' ]
+      }
+    ]
+  }
+
+  practice problems from above courseDetails(array of objects which also contains array courses inside each object)
+
+
+
+  2) Problem : The "Total Hours" Challenge
+Scenario: A projects collection has a tasks array. Each task has its own array of logs (time spent).
+Goal: Calculate the total hours spent on a project by summing all hours across all logs in all tasks.
+
+Data Structure:
+
+{
+  project: "Alpha",
+  tasks: [
+    { title: "Design", logs: [ { hours: 5 }, { hours: 2 } ] },
+    { title: "Dev", logs: [ { hours: 10 } ] }
+  ]
+}
+
+Your Task: Use $reduce on "$tasks.logs" to get a flat list of logs, then sum the hours.
+
+Problem : The "Unique Skills" Finder
+Scenario: A company collection has a departments array. Each department has an array of employees, and each employee has a skills array.
+Goal: Find all unique skills available in the entire company.
+Data Structure:
+
+{
+  company: "TechCorp",
+  departments: [
+    { name: "IT", employees: [ { skills: ["Java", "JS"] }, { skills: ["JS", "CSS"] } ] }
+  ]
+}
+
+Your Task: Use $reduce with $setUnion on "$departments.employees.skills" to get one unique list. (Hint: Notice the double dot notation!)
+
+Problem : The "Inventory Count" (Using $expr)
+Scenario: A store has a categories array. Each category has a products array.
+Goal: Find stores where the total number of products across all categories is greater than 10.
+Data Structure:
+
+{
+  store: "Downtown",
+  categories: [
+    { name: "Electronics", products: ["Phone", "Laptop"] },
+    { name: "Home", products: ["Table", "Chair", "Lamp"] }
+  ]
+}
+
+Your Task: Combine $match, $expr, and $reduce to filter the stores.
+
+   */
