@@ -28,7 +28,7 @@
 
 // jsUser.email = "ankur123@gmail.com";
 // console.log(jsUser.email);
-// // Object.freeze(jsUser); // now jsUser object is freeze so can't update any values any more.
+// Object.freeze(jsUser); // now jsUser object is freeze so can't update any values any more.
 // jsUser.email = "ankur456@gmail.com";// it will not work now
 // console.log(jsUser.email);// showing old email id 
 

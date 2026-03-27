@@ -1,4 +1,13 @@
 /**
+ Learn this in below fashion :-
+
+ 1) this in global scope
+ 2) this in normal function
+ 3) this in arrow function
+ 4) this with object methods 
+ 5) this with call/apply/bind
+
+ 
   this is a special keyword that refers to an object. Which object it refers to depends entirely on how and where the function is called.
 
 Think of it like a pronoun in English. If I say "Ankur is eating; he is hungry," "he" refers to Ankur. If I say "The dog is barking; it is loud," "it" refers to the dog. 
