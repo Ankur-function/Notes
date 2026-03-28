@@ -185,6 +185,7 @@ db.students.find({hasMacbook:{$type:"bool"}});
 2) Using Aggregation Operators in a filter:
 Anytime you want to use things like $size, $cond, $sum, or $add to decide if a document should stay or go.
 Example: Filtering by array length: { $match: { $expr: { $gt: [{ $size: "$tags" }, 3] } } }
+3) When you want to use "Aggregation Math" (like $size, $sum, $gt, or $multiply) inside a $match stage, you must wrap it in $expr.
 
 Note :- The Syntax Trick
 The syntax changes when you step into $expr. Follow these two rules:

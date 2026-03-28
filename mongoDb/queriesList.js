@@ -63,7 +63,8 @@ $addToSet
 $pullAll
 📌 Bitwise
 $bit
-3️⃣ AGGREGATION PIPELINE STAGES
+3️⃣ AGGREGATION PIPELINE STAGES 
+(A pipeline consists of one or more stages that process documents. Each stage transforms the documents as they pass through. The output of one stage becomes the input for the next.)
 
 These control flow of aggregation pipeline.
 
@@ -107,6 +108,7 @@ $fill
 $documents
 
 4️⃣ AGGREGATION EXPRESSION OPERATORS
+(While stages define where and when data moves, operators define how the data is calculated or transformed within those stages (especially inside $project, $addFields, or $group).)
 
 📌 Arithmetic Operators
 $add
