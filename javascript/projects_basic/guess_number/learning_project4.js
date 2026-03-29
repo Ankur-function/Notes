@@ -16,7 +16,7 @@ let numGuess = 1;
 let playGame = true;
 
 if (playGame) { // is user allowed to play game or not
-    submitButton.addEventListener('click',(e)=>{// why can't we use submit method here
+    submitButton.addEventListener('click',(e)=>{// why can't we use submit method here(we can definetly do that way too)
         e.preventDefault();
         validateGuess(parseInt(userInput.value));
     })

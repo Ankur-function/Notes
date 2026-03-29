@@ -125,7 +125,7 @@ title.textContent
 document.getElementsByClassName('heading') // similarly like getElementById.
 HTMLCollection [h1#title.heading, title: h1#title.heading]
 
-// querySelector method(VVI mostly used) :- jab hume koi element ko select karna ho.
+querySelector method(VVI mostly used) :- jab hume koi element ko select karna ho.
 
 querySelector :- when we need to select only one.
 querySelectorAll :- when we need to select all.
@@ -133,7 +133,6 @@ querySelectorAll :- when we need to select all.
 document.querySelector('h1') // so first h1 from the page will be return.
 document.querySelector(#title) // to search via id use '#'.
 document.querySelector(.heading) // to search via class use '.'.
-document.querySelector('h1') // so first h1 from the page will be return.
 
 const myul = document.querySelector('ul') // storing the complete 'ul' element in to myul.
 myul.querySelector('li') // fetching 'li' elements from mul
@@ -149,7 +148,7 @@ turngreen.innerText = 'five' // changing it's innerText
 
 document.querySelectorAll('li')
 NodeList(3) [li, li, li] // it not exactly as array in js. but it supports forEach,for. but you want to use it exactly like array and need to apply
-                         // map,filter etc methods, so for this first convert nodeList into array and then do it.
+                           map,filter etc methods, so for this first convert nodeList into array and then do it.
 
 const tempList = document.querySelectorAll('li')
 undefined
