@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Character Counter</title>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+   <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    }
+
+    .container {
+    width: 400px;
+    margin: 60px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    }
+
+    .info {
+    margin-top: 10px;
+    }
+
+    #remaining {
+    font-weight: bold;
+    color: green;
+    }
+
+    #currentCount {
+    font-size: 14px;
+    }
+
+    #warning {
+    color: red;
+    font-weight: bold;
+    }
+
+    .hidden {
+    display: none;
+    }
+   </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Post Something</h2>
+    <textarea id="tweetBox" placeholder="Type your message..."></textarea>
+    
+    <div class="info">
+      <p id="remaining">100 characters remaining</p>
+      <p id="currentCount">0 / 100</p>
+      <p id="warning" class="hidden">Character limit exceeded</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

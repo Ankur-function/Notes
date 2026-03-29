@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accordion</title>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+   <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 40px;
+}
+
+.accordion {
+  width: 500px;
+  margin: auto;
+}
+
+.item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background: white;
+}
+
+.question {
+  padding: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #eaeaea;
+}
+
+.answer {
+  padding: 15px;
+  display: none;
+}
+
+.answer.show {
+  display: block;
+}
+   </style>
+</head>
+<body>
+
+  <div class="accordion">
+
+    <div class="item">
+      <div class="question" data-id="1">What is JavaScript?</div>
+      <div class="answer">JavaScript is a programming language used to make web pages interactive.</div>
+    </div>
+
+    <div class="item">
+      <div class="question" data-id="2">What is DOM?</div>
+      <div class="answer">DOM stands for Document Object Model. It represents the structure of HTML as objects.</div>
+    </div>
+
+    <div class="item">
+      <div class="question" data-id="3">What is Event Bubbling?</div>
+      <div class="answer">Event bubbling is when an event propagates from child to parent elements.</div>
+    </div>
+
+    <div class="item">
+      <div class="question" data-id="4">What is Event Delegation?</div>
+      <div class="answer">Event delegation is handling events at a parent level instead of individual children.</div>
+    </div>
+
+    <div class="item">
+      <div class="question" data-id="5">What is React?</div>
+      <div class="answer">React is a JavaScript library for building user interfaces using components.</div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

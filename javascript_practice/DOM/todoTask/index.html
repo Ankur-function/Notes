@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To Do List</title>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+   <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    }
+
+    .container {
+    width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .input-section {
+    display: flex;
+    gap: 10px;
+    }
+
+    input {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    }
+
+    button {
+    padding: 8px 12px;
+    cursor: pointer;
+    }
+
+    ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    }
+
+    li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    }
+
+    .completed {
+    text-decoration: line-through;
+    color: gray;
+    }
+
+    .delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    }
+   </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>My To-Do List</h2>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Enter a task..." />
+      <button id="addBtn">Add</button>
+    </div>
+
+    <h4 id="totalTasks">Total Tasks: 0</h4>
+
+    <ul id="taskList">
+      <!-- Tasks will come here dynamically -->
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

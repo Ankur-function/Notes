@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tabs Component</title>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+   <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+}
+
+.container {
+  width: 500px;
+  margin: 60px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background: #ddd;
+}
+
+.tab.active {
+  background: #333;
+  color: white;
+}
+
+.tab-content {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.hidden {
+  display: none;
+}
+   </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="home">Home</button>
+      <button class="tab" data-tab="about">About</button>
+      <button class="tab" data-tab="contact">Contact</button>
+    </div>
+
+    <div class="content">
+      <div class="tab-content" id="home">
+        <h3>Home Section</h3>
+        <p>Welcome to the home section.</p>
+      </div>
+
+      <div class="tab-content hidden" id="about">
+        <h3>About Section</h3>
+        <p>This is the about section.</p>
+      </div>
+
+      <div class="tab-content hidden" id="contact">
+        <h3>Contact Section</h3>
+        <p>This is the contact section.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

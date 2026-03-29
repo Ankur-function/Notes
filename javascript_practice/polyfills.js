@@ -16,7 +16,20 @@
     4) return value
 
     5) Then code
+
+
+two more remaing to do :-
+
+7. Function.prototype.bind
+
+👉 Return new function + control this
+
+8. Promise (basic version)
+
+👉 Just resolve/reject + then()
  */
+
+
 
 //1) map :-
 
@@ -91,7 +104,7 @@ console.log(filteredArray2);
   */
 
 //3) reduce() :-
-
+/*
 let arr = [5,10,15,20,30]
 
 let sum = arr.reduce((acc,curr)=>{
@@ -100,12 +113,12 @@ let sum = arr.reduce((acc,curr)=>{
 },0)
 console.log("reduce============ ",sum);
 
-/**
+
  Observations on original reduce :-
  1) every array has reduce() method in javascript so my own myReduce function should be too.
  2) it takes a callback function and an intial value as input.
  3) it loops over an array and calculate final answer as per given condition inside callback function.
- */
+ 
 
  Array.prototype.myReduce = function (func,intialValue) {
   // here this refers to arr
@@ -123,4 +136,70 @@ let acc= intialValue;
 let result = arr.myReduce(callBack,0);
 console.log("myReduce============ ",result);
 
+*/
+
+// call() :-
+/**
+let obj = {
+  name:'Ankur',
+  location:'gurugram'
+}
+
+function print(role,food) {
+  return `my name is ${this.name} and location is ${this.location} role is ${role} and favorite food ${food}`;
+}
+
+let result = print.call(obj,'engineer','pasta');
+console.log("result===========",result);
+
+
+
+ Observations in call() method :-
+
+ 1) original call() method is always available in all functions in javascript. so my own myCall() should be too.
+ 2) we apply call() on function and call method takes an object as an input and immediately invoke that input object as a this keyword inside
+    that function on which we had applied call().
+
+
+ Function.prototype.myCall = function (obj, ...args) {
+  // here this refers to the print function
+  let originalFunction = this;
+
+    obj.temp = originalFunction;
+     let res =  obj.temp(...args);
+     delete obj.temp
+      return res
+ }
+ 
+ let myResult = print.myCall(obj,'engineer','pasta')
+ console.log(myResult);
+  */
+
+ //apply() :-
+
+ let obj = {
+  name:'Ankur',
+  location:'gurugram'
+}
+
+function print(role,food) {
+  return `my name is ${this.name} and location is ${this.location} role is ${role} and favorite food ${food}`;
+}
+
+let result = print.apply(obj,['engineer','pasta']);
+console.log("result===========",result);
+
+ Function.prototype.myApply = function (obj,arr) {
+   let originalFunction = this;
+    obj.temp = originalFunction;
+    let res =  obj.temp(...arr);
+    delete obj.temp
+    return res;
+ }
+
+ let myResult = print.myApply(obj,['engineer','pasta']);
+ console.log("myResult==============",myResult);
+ 
+
+ 
 
