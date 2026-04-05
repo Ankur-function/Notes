@@ -570,6 +570,219 @@ db.students.find({$text:{$search:"teacher"}}); // yha $text means mujhe text ind
                 User history
                 User delivered orders
                 User orders sorted by date
+
+ 🧠 MongoDB Text Index — Rules Cheat Sheet :-
+
+1️⃣ Only ONE text index per collection :-
+db.products.createIndex({ title: "text" })   // ✅
+db.products.createIndex({ description: "text" }) // ❌ second text index not allowed
+
+If you need multiple fields → put them in the same text index.
+
+db.products.createIndex({
+  title: "text",
+  description: "text"
+})
+
+2️⃣ Text index is NOT a normal B-Tree index :-
+
+Text index = inverted index
+
+That means:
+
+Operation	Works with text index?
+$text search	✅ Yes
+Equality filter (category)	❌ No
+Sorting (rating)	❌ No
+Range queries	❌ No
+Covered query	❌ No
+Treat text index as usable only for $text.
+
+3️⃣ Never rely on compound text index for sort/filter :-
+
+Mongo allows this:
+
+{ category: 1, title: "text", description: "text" }
+
+But Mongo will ignore category for optimization.
+
+So this is a trap ❌
+
+4️⃣ Correct pattern (MOST IMPORTANT) :-
+
+For text search + filters + sort → always two indexes
+
+// For search
+{ title: "text", description: "text" }
+
+// For filter + sort
+{ category: 1, rating: -1 }
+
+Mongo uses index intersection.
+
+5️⃣ Query pattern for text search :-
+db.products.find(
+  {
+    $text: { $search: "laptop" },
+    category: "electronics"
+  },
+  {
+    title: 1,
+    price: 1,
+    rating: 1,
+    score: { $meta: "textScore" }
+  }
+).sort({ score: { $meta: "textScore" }, rating: -1 })
+
+Always sort by textScore first, then your custom sort.
+
+6️⃣ You cannot do covered query with text index :-
+
+Because Mongo must fetch the document to compute textScore.
+
+So this will never be covered:
+
+projection: { title: 1, price: 1 }
+
+7️⃣ Use weights to prioritize fields :-
+db.products.createIndex(
+  { title: "text", description: "text" },
+  { weights: { title: 10, description: 2 } }
+)
+
+Now matches in title rank higher.
+
+8️⃣ Stop words & stemming happen automatically :-
+
+Search "running" matches "run"
+Common words like “the”, “is” are ignored.
+
+You cannot change this behavior easily.
+
+9️⃣ Text index cannot be used inside $regex :-
+
+Wrong:
+
+{ title: /laptop/i }
+
+This does collection scan.
+
+Text index works only with $text.
+
+🔟 Text index cannot support partial match like autocomplete :-
+
+Search "lap" will NOT match "laptop".
+
+Text index is for word-based search, not prefix.
+
+1️⃣1️⃣ Text index + sort rule :-
+
+You cannot depend on text index for sorting.
+
+Always create a separate B-Tree index for sorting needs.
+
+1️⃣2️⃣ Golden Interview Rule :-
+
+Text index is for finding documents.
+B-Tree index is for filtering and sorting documents.
+
+Never mix their responsibilities.
+
+✅ Final Mental Model :-
+
+When you see:
+
+Search bar + filters + sort
+
+Immediately think:
+
+TEXT INDEX     → search
+BTREE INDEX    → filter + sort
+Two indexes. Always.
+
+When you run a $text query, MongoDB automatically calculates a relevance score for every matched document. :-
+
+      That score is not stored in your document.
+      Mongo generates it during query execution.
+
+      Where did this score field come from?
+
+      It did not exist in your collection.
+
+      You are creating it on the fly in projection:
+
+      score: { $meta: "textScore" }
+
+      You are telling Mongo:
+
+      “Give me the internal relevance score you calculated for this document and expose it as a field named score in the result.”
+
+      You can name it anything:
+
+      relevance: { $meta: "textScore" }
+      rank: { $meta: "textScore" }
+
+      score is just an alias you choose.
+
+      What is $meta?
+
+      $meta is a special MongoDB keyword used to access metadata produced during query execution.
+
+      Not actual document data.
+      Query execution data.
+
+      Mongo currently exposes metadata mainly for:
+
+      textScore (text search relevance)
+      searchScore (Atlas Search)
+      What is "textScore"?
+
+      When Mongo performs text search using the text index, it:
+
+      Breaks your search term ("laptop") into tokens
+      Matches them against indexed words
+      Calculates a relevance score based on:
+      word frequency
+      field weight
+      how closely it matches
+      how rare the word is
+
+      That number is called textScore.
+
+      Higher score = better match.
+
+      Example to make it crystal clear
+
+      Suppose you have:
+
+      { title: "Gaming Laptop", description: "High performance laptop" }
+      { title: "Laptop Bag", description: "Bag for carrying laptop" }
+      { title: "Mouse", description: "Wireless mouse" }
+
+      Search:
+
+      { $text: { $search: "laptop" } }
+
+      Mongo internally ranks like:
+
+      title	textScore
+      Gaming Laptop	12.5
+      Laptop Bag	7.2
+      Mouse	0 (not returned)
+
+      You cannot see this score unless you ask for it using $meta.
+
+      Why we must sort using it
+
+      If you don’t do:
+
+      .sort({ score: { $meta: "textScore" } })
+
+      Mongo will return documents in random relevance order and then apply your rating sort, which breaks search quality.
+
+      Interview one-liner
+
+      $meta: "textScore" exposes MongoDB’s internally calculated text relevance score so we can sort results by search relevance before applying custom sorting like rating.
  */
 
 
@@ -1171,6 +1384,10 @@ Outside $expr (Simple Mode): Dot notation works great! db.students.find({"scores
 Inside $expr or $project (Advanced Mode): Dot notation can sometimes return a "List" of values instead of a single "Number." $arrayElemAt is the "Senior" way because it guarantees you get exactly one single element, which prevents weird bugs in your math.
 
   */
+
+/**
+ Pagination :- need to study this topic
+ */
 
 /**
     Data Modeling :- ask below questions before doing schema design :-
