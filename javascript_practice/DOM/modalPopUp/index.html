@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modal Component</title>
+
+  <style>
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      position: relative;
+      width: 300px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      border: none;
+      background: transparent;
+    }
+
+    #openBtn {
+      margin: 100px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="openBtn">Open Modal</button>
+
+  <div class="overlay hidden">
+    <div class="modal">
+      <button class="closeBtn">&times;</button>
+      <h2>Modal Title</h2>
+      <p>This is a modal popup</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
