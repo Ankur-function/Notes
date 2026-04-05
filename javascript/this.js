@@ -25,7 +25,7 @@ console.log(this) // it will give undefined if we use strict mode and it will gi
 }
 test()
 
-3) this substitution :- in above function test value of this keyword is undefined originally at first and If value of 'this' keyword is undefined or null then 'this' keyword will be replaced by global object (only in case of non strict mode)
+3) this substitution :- in above function 'test' value of this keyword is undefined originally at first and If value of 'this' keyword is undefined or null then 'this' keyword will be replaced by global object (only in case of non strict mode)
    because of this substitution phenomena in js.
 
 4) function vs method :- when you write a function inside an object then that function is called as method. for e.g.
