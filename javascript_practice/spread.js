@@ -26,14 +26,13 @@ console.log(a.x, c.x);
 console.log(Object.keys({...a}).join(','));
  */
 
-/**
- * VVI
- Fix (only change RHS): code should produce {id:1, name:'A'} even if data may have extra props.
+
+ //Fix (only change RHS): code should produce {id:1, name:'A'} even if data may have extra props.
 
 const data = { id:1, name:'A', secret:true };
-const safe = ???
-console.log(safe);
-*/
+const {secret,...rest}= data
+console.log(rest);
+
 
 /**
  * VVI
@@ -138,7 +137,17 @@ const j = JSON.stringify(c);
 console.log(j);
 */
 
+/**
+ The Spread Limitation: You have an array of objects const users = [{id: 1}, {id: 2}]. After const copy = [...users], 
+ you change copy[0].id = 99. Does users[0].id change? Why?
+ */
 
+
+ /**
+  Method Loss: Why is JSON.parse(JSON.stringify(obj)) considered a "dangerous" deep copy method when the object contains functions, 
+  undefined, or NaN?
+  */
+ 
 
 
 

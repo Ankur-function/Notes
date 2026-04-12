@@ -244,4 +244,18 @@ Write a single reduce that returns { A: [1,3], B: [2] } (ids grouped by team). E
  */
 
  
- 
+ /**
+  * VVI
+  A "Senior" Interview Scenario:
+Imagine you have a messy object from a legacy API:
+javascript
+const legacyData = {
+  user_1: { active: true, points: 10 },
+  user_2: { active: false, points: 50 },
+  user_3: { active: true, points: 20 },
+};
+Use code with caution.
+
+The Senior Task: "Convert this into a sorted array of IDs for only the active users, but do it in a way that is most readable and maintainable for the team."
+At your level, they want to see if you reach for Object.entries(), then .filter(), then .sort(), and .map(). They care about your chaining logic and clean code principles, not just the method name.
+  */
