@@ -124,7 +124,7 @@ console.log(original[1].val);
 
 How to do it correctly (Immutability) :-
 If you want to use .map() without changing the original array, you must create a new object inside the function using the Spread Operator or Object.assign():
-javascript
+
 const doubled = original.map(obj => {
   // Create a COPY of the object with a new 'val'
   return { ...obj, val: obj.val * 2 };// pehla shallow copy bana lo fir karo to original object will not change now.
@@ -149,7 +149,6 @@ function testLoop() {
 testLoop();
 // Output: 1
  */
-
 
 
 

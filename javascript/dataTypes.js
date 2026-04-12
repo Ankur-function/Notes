@@ -2,15 +2,19 @@
  * There are officially two types of data types :-
  * 
  * Basically categories are based on how you store your data in the memory and how you access them. 
- * 1) Primitive (call by value):- means it doesnt provide original address of memory. instead it gives only copied version.
+ * 
+ * 1) Primitive (call by value):- Primitive types represent single, basic values and are immutable, meaning their actual value cannot
+ *    be changed once created. When you reassign a primitive variable, you are not changing the original value but replacing it with a new one in memory.
  *    7 types :- String, Number, Boolean, null, undefined, symbol, BigInt
  * 
- * 2) Non Primitive (call by reference):- it gives directly memory reference so yha jo bhi change karoge original value me
+ * 2) Non Primitive (call by reference):- Non-primitive types are mutable and can store collections of data or more complex entities.
+ *    In JavaScript, almost everything that is not a primitive is an Object.
+ *    it gives directly memory reference so yha jo bhi change karoge original value me
  *    change hoga.
  *    types :- Array, Objects, Functions
  */
 
-///////////////////////////////////////////// stack-heap memory////////////////////////////////////////////////////////////
+//------------------------------------------------------stack-heap memory--------------------------------------------------------------
 
 /**
  In JavaScript, memory is divided into two main areas: the Stack and the Heap. Where data is stored depends on whether

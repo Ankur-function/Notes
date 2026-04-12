@@ -30,7 +30,7 @@
 
 //------------------------------------------------- Higher Order Array Loops -------------------------------------------------------------
 
-// For of loop :- this loop does not work with object. it works fine with array and strings.
+// For of loop :- where you just need the values, this loop does not work with object. it works fine with array and strings.
 
 // const arr = [10,20,30,40,50,60];
 
@@ -47,14 +47,14 @@
 // Map :- map is an object which contains key:value pair.and key in the map is always unique.
 // study about Map in more detail.
 
-// const map = new Map();
-// map.set('IN','India');
-// map.set('USA', 'United states of america');
-// map.set('FR','France');
-// map.set('IN','India');// get ignores because below one has same key.
-// map.set('IN','test');// only this will come inside map object because always unique key. and this one is the latest one.
+const map = new Map();
+map.set('IN','India');
+map.set('USA', 'United states of america');
+map.set('FR','France');
+map.set('IN','India');// get ignores because below one has same key.
+map.set('IN','test');// only this will come inside map object because always unique key. and this one is the latest one.
 
-// console.log(map);
+console.log(map);
 
 // for(const [key,val] of map){ // yha [key,val] syntax hai for of loop ka. ye kind of destructure kar deta hai object me here key means keys of object and val means object ke values.
 //     console.log(`key is ${key} and value is ${val}`);
@@ -115,14 +115,14 @@ for (let index in arr) {
 
 //-----------------------------------------------------------forEach loop-----------------------------------------------------------------------
 
-const coding = ['c','cpp','java','js','python'];
+// const coding = ['c','cpp','java','js','python'];
 // coding.forEach((item,index,arrList)=>{ // syntax of forEach
 //     console.log(`item is ${item}, and it's index is ${index} and array list is ${arrList}`);
 // });
-const result = coding.forEach((item,index,arrList)=>{ // result will be undefined.
-    console.log(`item is ${item}, and it's index is ${index} and array list is ${arrList}`);
-    return item;
-});
+// const result = coding.forEach((item,index,arrList)=>{ // result will be undefined.
+//     console.log(`item is ${item}, and it's index is ${index} and array list is ${arrList}`);
+//     return item;
+// });
 
 // Note:- forEach never returns anything . it will always return undefined.
 
