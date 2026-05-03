@@ -35,8 +35,6 @@ You must write:
 4️⃣ Can this be a covered query? If yes, how?
  */
 
-const { status } = require("@grpc/grpc-js");
-
 /**
  🧪 Problem 2 — Products Search Page
         products

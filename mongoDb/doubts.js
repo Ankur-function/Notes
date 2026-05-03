@@ -1,4 +1,9 @@
 /**
+ * 
+ * practice where group operator inside aggregation takes more than one field. like this :-
+ * $group:{_id:{userId:'$userId',category:'$productDetails.category'}} ?? how to solve and when we take multiple fields inside group ?
+ * 
+ 
  need more practice on :- $expr operator
  1)$expr
 
@@ -124,3 +129,49 @@ $reduce → compute a single value from the array (very powerful for custom sums
 $filter → filter elements
 $arrayElemAt → pick one element (useful after $lookup)
  */
+
+/**
+ VVI :-
+
+To understand performance tuning in MongoDB, it is important to know how MongoDB determines if a query is fast or slow.
+When you run a query, MongoDB acts like a detective searching for matching documents.
+ These two terms are the exact metrics MongoDB uses to show you its work.
+
+1. What is .explain("executionStats")?
+By default, when you run a query like db.users.find({ city: "Gurugram" }), MongoDB just returns the matching documents.
+It doesn't tell you how it found them.By appending .explain("executionStats") to your query, you are asking MongoDB to run the query
+and give you a detailed performance diagnostic report instead of the data.
+db.users.find({ city: "Gurugram", age: { $gt: 25 } }).explain("executionStats")
+This diagnostic report shows you exactly:
+Which index was used (or if it did a full collection scan).How long the query took to execute in milliseconds (executionTimeMillis).
+How many index keys and documents it had to scan.
+
+2. What is totalKeysExamined?
+When you create an index on a field, MongoDB creates a separate, sorted list of pointers to your documents.
+This list is made of index keys.
+totalKeysExamined tells you the exact number of index entries MongoDB had to look at to fulfill your query.
+An Analogy: The Index in the Back of a BookImagine you are reading a history book and want to find every page that mentions "Rome".
+You flip to the Index at the back of the book.You see the entry for Rome has 5 page numbers listed: 12, 14, 15, 88, 90.
+Your eyes scan those 5 entries in the index.In this scenario, your totalKeysExamined is 5, because you looked at 5 index entries to
+find where the information lives.Why these two terms matter togetherIn your .explain("executionStats") output, you will see two very 
+important metrics sitting next to each other:totalKeysExamined (How many index entries were scanned).totalDocsExamined 
+(How many actual documents were fetched from disk).
+
+How to tell if your index is good:-
+
+Metric Scenario                 What it means                                   Performance Level
+totalKeysExamined: 100          Perfect. Every single index entry               Optimal (100% efficient)
+                                MongoDB looked at led directly to a 
+totalDocsExamined: 100          document that matched the query. 
+                                No wasted scans.
+                                
+                                 
+ totalKeysExamined: 10,000       Bad. MongoDB had to scan through 10,000         Inefficient (High CPU)
+                                 index keys just to find the 100 documents
+ totalDocsExamined: 100          that actually matched. Your index order 
+                                 isn't correct.
+
+
+
+
+*/

@@ -1353,7 +1353,7 @@ $map is used to transform every element of an array.Think of it like JavaScript 
 
  {
  $reduce:{
-   input:<array>,
+   input:<array>,(with $)
    initialValue:<startValue>,
    in:<expression>
  }
@@ -1391,6 +1391,53 @@ Inside $expr or $project (Advanced Mode): Dot notation can sometimes return a "L
 
 /**
     Data Modeling :- ask below questions before doing schema design :-
+
+    what is Embed and Reference in mongodb schema design
+In MongoDB, Embedding and Referencing are the two primary ways to manage relationships between data. Since MongoDB doesn't have "Joins" in the traditional SQL sense, your choice here defines your app's performance. 
+📦 1. Embedding (Denormalization)
+Related data is stored inside a single document. It’s like a nested JSON object. 
+Structure:
+json
+{
+  "user": "John",
+  "address": { 
+    "city": "Mumbai",
+    "zip": "400001" 
+  }
+}
+
+Best for: "One-to-Few" relationships.
+Pros:
+Fast Reads: Fetch all data in one query (no joins).
+Atomicity: Updates to the whole document happen in one go.
+Cons:
+Size Limit: Documents cannot exceed 16MB.
+Data Duplication: If many users share one address, updating it means updating every user record. 
+
+🔗 2. Referencing (Normalization)
+Documents are stored in separate collections and linked by an ID (similar to Foreign Keys). 
+Structure:
+json
+// Users Collection
+{ "_id": 1, "name": "John", "address_id": 505 }
+
+// Addresses Collection
+{ "_id": 505, "city": "Mumbai", "zip": "400001" }
+
+Best for: "One-to-Many" or "Many-to-Many" relationships.
+Pros:
+No Duplication: Change the address once; it reflects everywhere.
+Flexibility: Collections stay small and manageable.
+Cons:
+Slower Reads: Requires multiple queries or the $lookup (join) stage.
+Integrity: You have to manually ensure the ID exists in the other collection. 
+
+⚖️ How to Choose?
+Scenario 	Recommendation
+Data is requested together 90% of the time-------------->>>>>>>>>>>>>>Embed
+Data is large or grows indefinitely (e.g., Log files)-------->>>>>>>>>>>>	Reference
+Data is frequently updated in one place------------------>>>>>>>>>>>>>>>>>>	Reference
+Highest read performance is required-------------------->>>>>>>>>>>>>>>>>>>	Embed
 
     🧾 🔥 CHEATSHEET — Read Before Designing Any Schema
 Golden Rules :-
@@ -1505,7 +1552,7 @@ Why $expr is the weird one :-
 Remember we talked about $expr? It uses the "Operator First" style even inside a .find() because it’s borrowed from the Aggregation (calculation) engine.
 Normal Find: { age: { $gt: 10 } } (Field first)
 $expr Find: { $expr: { $gt: ["$age", 10] } } (Operator first)
-
+Use code with caution.
 
 How to stop the confusion:-
 Next time you write a query, ask yourself: "Am I looking for something, or am I doing something to it?"

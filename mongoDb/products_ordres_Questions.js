@@ -16,7 +16,7 @@ Part 1: Filtering, Shaping, and Math (Working within single collections) :-
 2) Conditional Pricing: Fetch all products. Create a new field called salePrice. If the category is "Electronics", apply a 10% discount to the price; otherwise, keep the original price.
 (Required operators: $project, $cond, $multiply, $subtract)
 
-3) Array Filtering (Strict): Return only the name and reviews of products, but only include reviews with a score of 4 or higher. If a product has no reviews matching this, the array should be empty.
+3) Array Filtering (Strict):(with $) Return only the name and reviews of products, but only include reviews with a score of 4 or higher. If a product has no reviews matching this, the array should be empty.
 (Required operators: $project, $filter, $gte)
 
 4) String Manipulation & Concatenation: Find products with "premium" in their tags. Output a single formatted string field called productLabel that looks like this: "Laptop Pro - $1200".
