@@ -1,11 +1,10 @@
 //Spread operator in objects :-
 
-/**
- * VVI
- const a = { x: 1 };
-const b = { x: 2, ...a };
-console.log(b.x);
- */
+
+//  const a = { x: 1 };
+// const b = { x: 2, ...a };
+// console.log(b.x);
+ 
 
 /**
  const a = { x: 1, y: 2 };
@@ -27,11 +26,8 @@ console.log(Object.keys({...a}).join(','));
  */
 
 
- //Fix (only change RHS): code should produce {id:1, name:'A'} even if data may have extra props.
+ // VVI Fix (only change RHS): code should produce {id:1, name:'A'} even if data may have extra props.
 
-const data = { id:1, name:'A', secret:true };
-const {secret,...rest}= data
-console.log(rest);
 
 
 /**

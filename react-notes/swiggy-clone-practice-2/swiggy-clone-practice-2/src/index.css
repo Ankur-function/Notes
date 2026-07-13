@@ -1,0 +1,92 @@
+/* General reset for the list */
+.navItems ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+/* Header container layout */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Logo sizing */
+.logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Navigation links styling */
+.navItems li {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Hover effect for items */
+.navItems li:hover {
+  color: #ff4757; /* Food delivery theme red/orange */
+}
+
+/* Special styling for the Cart item to make it stand out */
+.navItems li:last-child {
+  background-color: #ff4757;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.navItems li:last-child:hover {
+  background-color: #e03d4f;
+}
+
+.card {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: sans-serif;
+}
+
+.card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card h3 {
+  margin: 8px 0 4px 0;
+  font-size: 16px;
+}
+
+.card h4 {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+  font-weight: normal;
+}
+
+/* Update or add this to your CSS file */
+.res-card {
+  display: flex;
+  flex-wrap: wrap;       /* Allows cards to wrap to the next line smoothly */
+  gap: 20px;             /* Adds clean space between the cards */
+  justify-content: flex-start; /* Aligns cards to the left side */
+  padding: 20px;
+}
+

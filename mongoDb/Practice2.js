@@ -276,7 +276,6 @@ Index B: { age: 1 }
 The Problem
 A query comes in to find all users matching both criteria:
 
-JavaScript
 db.users.find({ city: "Gurugram", age: { $gte: 25, $lte: 30 } })
 Interview Questions
 What is Index Intersection, and how does MongoDB use it in this case?
@@ -284,12 +283,5 @@ What is Index Intersection, and how does MongoDB use it in this case?
 From a performance perspective, is it better to rely on index intersection (Index A and Index B together) or to create a single compound index on { city: 1, age: 1 }? Use explain() output terms (IXSCAN, AND_SORT, FETCH) to justify your answer.
  */
 
-// my solution :-
-
-// creating a single compound index would be much better for this query. because if we use two separate single-field indexes.
-// then it's of no use because mongo still have to search linearly like first in city index tree and second time inside age index
-// tree. and also it will take more memory space. so better would be compound index followed by E-S-R rule. i.e. equality, sorting,
-// range rule.
-// so my final compound index would be :- 
-db.users.createIndex({city:1,age:1}) // only equality and range filter is present in this query so skip sorting here
+// now start from problem 4 (gemini mongodb pinned chats)
 

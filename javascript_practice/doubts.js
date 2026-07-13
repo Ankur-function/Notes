@@ -13,8 +13,8 @@
  3) destructring in arrays and objects.
  4) need more practice in spread and rest operator problems.
  5) all possible ways to create an array and problems on them.
- 6) Map or new Map()
- 7) How return keyword behaves in for loop, for of loop , and in higher order functions.
+ 6) Study about Symbol.
+ 7) working with Date. creating date comparing with dates etc. i am too weak with this.
 
   Iterators, Iterables and Generators.// isko to detail me padhna hoga.
   Symbol :- study about this

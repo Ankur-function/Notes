@@ -1,0 +1,440 @@
+/* Layout bar styling */
+.yt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  font-family: sans-serif;
+}
+
+/* Left side alignment */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.yt-logo {
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Middle search grouping alignment */
+.header-middle {
+  display: flex;
+  align-items: center;
+  flex-grow: 0.4; /* Takes up a balanced portion of the middle area */
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 40px 0 0 40px; /* Rounded corners on left side only */
+  outline: none;
+  font-size: 14px;
+}
+
+.search-btn {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-left: none; /* Merges the border edge with the input field */
+  border-radius: 0 40px 40px 0; /* Rounded corners on right side only */
+  background-color: #f8f8f8;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Right side profile image styling */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Keeps the avatar circular */
+  cursor: pointer;
+}
+
+/* Sidebar container panel */
+.sidebar {
+  width: 240px;
+  background-color: #ffffff;
+  padding: 12px;
+  font-family: sans-serif;
+  height: 100vh; /* Takes full window height */
+  box-sizing: border-box;
+}
+
+/* Reset margins and paddings for the list wrapper */
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  border-bottom: 1px solid #e5e5e5; /* Subtitle section separator line */
+  padding-bottom: 12px;
+}
+
+/* Individual list entries */
+.menu-item {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #030303;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: background-color 0.1s ease;
+}
+
+/* Hover style state */
+.menu-item:hover {
+  background-color: #f2f2f2;
+}
+
+/* Selected active state (for the Home link) */
+.menu-item.active {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+/* Section headings */
+.sidebar-heading {
+  font-size: 14px;
+  color: #030303;
+  margin: 0 0 8px 12px;
+  font-weight: 500;
+}
+
+/* 1. Aligns the SideBar and Body components perfectly parallel to each other */
+.main-content-layout {
+  display: flex;
+  width: 100%;
+}
+
+/* 2. Forces the Body content area to expand and occupy the remaining layout space */
+.main-feed-body {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-x: hidden;
+}
+
+/* 3. Forces the button entries to align cleanly in a horizontal row */
+.horizontal-button-list {
+  display: flex;
+  gap: 12px;           /* Adds proportional spacing between individual buttons */
+  margin-bottom: 24px; /* Creates clean separation from the VideoContainer below */
+  overflow-x: auto;    /* Allows mouse/touch swipe scrolling if labels overflow screen width */
+  padding-bottom: 4px;
+}
+
+/* 4. Basic styling to make the buttons match YouTube's pill style tag look */
+.tag-btn {
+  background-color: #f2f2f2;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: sans-serif;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents text formatting from splitting onto multiple lines */
+  transition: background-color 0.1s ease;
+}
+
+.tag-btn:hover {
+  background-color: #e5e5e5;
+}
+
+/* Responsive Grid Wrapper Container */
+.video-grid-container {
+  display: grid;
+  /* Automatically columns fill rows based on space, minimum 280px wide each */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px 16px; /* 40px vertical spacing between rows, 16px horizontal spacing */
+  padding: 24px 0;
+  width: 100%;
+}
+
+/* Individual Video Item Box */
+.yt-video-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Rounded Border Thumbnail Layer */
+.thumbnail-img {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Guarantees standard streaming dimensions */
+  object-fit: cover;
+  border-radius: 12px; /* YouTube's modern rounded design */
+  background-color: #f0f0f0;
+  margin-bottom: 12px;
+}
+
+/* Text Meta Container wrapping */
+.video-details {
+  display: flex;
+  flex-direction: column;
+  padding: 0 4px;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+/* Video Header Title text rules */
+.video-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f0f0f;
+  margin: 0 0 6px 0;
+  line-height: 22px;
+  /* Truncates text with clean ellipsis if title spills over two lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Gray sub-meta description labels */
+.channel-name {
+  font-size: 14px;
+  color: #606060;
+  margin: 0 0 2px 0;
+}
+
+.view-count {
+  font-size: 14px;
+  color: #606060;
+}
+
+/* Layout container that creates breathing room similar to YouTube */
+.watch-container {
+  width: 100%;
+  max-width: 1280px; 
+  /* Fix: Clear the "auto" horizontal property to anchor it left */
+  margin: 0;         
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+
+/* Aspect-ratio shell container to prevent screen height popping */
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Enforces YouTube's standard structural scale */
+  background-color: #000000; /* Dark canvas behind during slow video loads */
+  border-radius: 12px;       /* Sleek modern video corners */
+  overflow: hidden;
+}
+
+/* Forces the iframe frame to lock and stretch across its layout container shell */
+.yt-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Anchoring shell wrapper context */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Combines the horizontal search box items */
+.search-box-row {
+  display: flex;
+  width: 100%;
+}
+
+/* Floating overlay suggestion dropdown container box */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%; /* Positions it directly at the bottom edge of your input box */
+  left: 0;
+  width: calc(100% - 64px); /* Fits perfectly with the width of your search input minus the search button */
+  background-color: #ffffff;
+  border-radius: 12px;       /* YouTube's modern rounded design card look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.05);
+  margin-top: 4px;
+  padding: 8px 0;
+  list-style-type: none;
+  z-index: 100; /* Forces the box to overlay on top of any video panels below */
+}
+
+/* Individual list item lines */
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+  color: #0f0f0f;
+  font-weight: 500;
+}
+
+/* Highlight background on mouse hover state */
+.suggestion-item:hover {
+  background-color: #f2f2f2;
+}
+
+/* The faint gray magnifying glass layout icon */
+.search-icon {
+  margin-right: 12px;
+  color: #606060;
+  font-size: 14px;
+}
+
+.suggestion-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Main outer side panel shell container */
+.live-chat-panel {
+  width: 100%;
+  max-width: 400px; /* Standard YouTube live chat side-panel column width */
+  height: 500px;    /* Locked structural tracking height */
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header structural tab layout strip */
+.chat-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.chat-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f0f0f;
+}
+
+/* Inner message view box stream layer */
+.chat-messages-container {
+  flex-grow: 1;
+  padding: 16px;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Handles scrollbar generation as new text items enter */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.chat-message-placeholder {
+  text-align: center;
+  color: #606060;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Bottom interface input footer strip */
+.chat-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #ffffff;
+}
+
+/* Input placeholder text field element styling */
+.chat-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f2f2f2;
+}
+
+/* Send action execution button element styling */
+.chat-send-btn {
+  padding: 8px 16px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #606060;
+  cursor: pointer;
+}
+
+/* Layout canvas padding constraints matching YouTube spacing */
+.watch-page-container {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Master row splitter aligning the left column and right column side-by-side */
+.watch-main-layout {
+  display: flex;
+  gap: 24px; /* Creates clean breathing gutter gap between video and chat panel */
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Forces the main content column to grow and expand across remaining horizontal space */
+.watch-left-column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Locks the layout width bounds of the side column so it doesn't stretch or contract layout structures */
+.watch-right-column {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 400px; /* Aligns with your LiveChat layout width dimensions */
+}
+
+/* Aspect-ratio container logic remains intact */
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.yt-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+

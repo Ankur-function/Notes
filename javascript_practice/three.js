@@ -25,15 +25,15 @@ console.log(o.a, o["a"]);
  How do you delete a property? What does the operation return? Show code.
  */
 
- /**
-  4) VVI
-  const proto = { z: 3 };
-const o = Object.create(proto);
-o.x = 1;
-o.y = 2;
-for (let k in o) console.log(k);
-console.log(Object.keys(o));
-  */
+ 
+// const proto = { z: 3 };
+// const o = Object.create(proto);
+// o.x = 1;
+// o.y = 2;
+// console.log(o);
+// for (let k in o) console.log(k,o[k]);
+// console.log(Object.keys(o));
+  
 
 /**
  5)
@@ -71,18 +71,18 @@ b.push(4);
 console.log(a.length, a[a.length-1]);
  */
 
-/**
- const obj = {0:'zero', 2:'two', 1:'one'};
-console.log(Object.keys(obj).join(','));
- */
 
-/**
- let arr = [1,2,3];
-for (let num of arr) { num = num * 2; }
-console.log(arr);
- */
+//  const obj = {0:'zero', 2:'two', 1:'one'};
+// console.log(Object.keys(obj).join(','));
+ 
 
-//let arr = [1,2,3];
+
+//  let arr = [1,2,3];
+// for (let num of arr) { num = num * 2; }
+// console.log(arr);
+ 
+
+// let arr = [1,2,3];
 // for (let i=0;i<arr.length; i++)
 //      { arr[i] = arr[i] * 2; }
 // console.log(arr);
@@ -130,7 +130,7 @@ function safeClone(src){
  */
 
 /**
- const proto = { inherited: "I am from prototype" };
+const proto = { inherited: "I am from prototype" };
 const src = Object.create(proto); // src inherits 'inherited'
 src.own = "I am own property";
 
@@ -303,3 +303,4 @@ console.log(obj.key1 + obj.key2);
  Write a function buildObject that takes an array of numbers, creates an object with keys like 'num-1', 'num-2', etc., 
  values as squares, and returns it. Test with [3,4] and log { 'num-1':9, 'num-2':16 }.
  */
+ 

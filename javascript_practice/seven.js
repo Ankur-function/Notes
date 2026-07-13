@@ -71,7 +71,7 @@ const res = a.filter(v => {
   if (v === 2) a.push(5);
   return v % 2 === 0;
 });
-console.log(res, a);yet
+console.log(res, a);
  */
 /**
  VVI
@@ -80,12 +80,12 @@ const items = [{id:2},{id:1},{id:2}];
  */
 /**
  * VVI
- const a = [ , 2 , , 4 ]; // holes at 0 and 2
+ const a = [ , 2 , , 4 ];
 const r = a.filter(v => v !== undefined);
 console.log(r);
  */
 /**
-[].reduce((a, b) => a + b, 0); 
+[].reduce((a, b) => a + b, 0);
  */
 /**
  VVI , i will do later after learning these concepts.
@@ -118,7 +118,7 @@ nums.forEach((num) => {
 /**
  Scenario A: The loop is inside a function
 If the loop is inside a function, return will exit the entire function immediately. This means the loop stops, and any code after the loop (inside that function) is ignored.
-javascript
+
 function testLoop() {
   const nums = [1, 2, 3, 4];
   for (let i = 0; i < nums.length; i++) {
@@ -242,19 +242,25 @@ console.log(fruitCount.apple);
  const users = [{id:1,team:'A'},{id:2,team:'B'},{id:3,team:'A'}];
 Write a single reduce that returns { A: [1,3], B: [2] } (ids grouped by team). Explain time complexity.
  */
+// Write a single reduce that returns { A: [1,3], B: [2] } (ids grouped by team). Explain time complexity.
+ const users = [{id:1,team:'A'},{id:2,team:'B'},{id:3,team:'A'}];
+ const userWithIds = users.reduce((acc,curr)=>{
+  acc[curr.team] = (acc[curr['id']]|| []) + acc[curr['id']]?.push(curr['id']);
+  return acc;
 
+ },{});
+  console.log(userWithIds);
  
  /**
   * VVI
   A "Senior" Interview Scenario:
 Imagine you have a messy object from a legacy API:
-javascript
+
 const legacyData = {
   user_1: { active: true, points: 10 },
   user_2: { active: false, points: 50 },
   user_3: { active: true, points: 20 },
 };
-Use code with caution.
 
 The Senior Task: "Convert this into a sorted array of IDs for only the active users, but do it in a way that is most readable and maintainable for the team."
 At your level, they want to see if you reach for Object.entries(), then .filter(), then .sort(), and .map(). They care about your chaining logic and clean code principles, not just the method name.
