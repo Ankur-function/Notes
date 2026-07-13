@@ -20,5 +20,5 @@ In const a = {0:'zero', 2:'two', 1:'one'}, the keys are integers. JavaScript's o
 
 Summary for Interview:-
 Arrays: Default to Alphabetical (that’s why 10 comes before 2).
-Object Keys: Default to Numerical for numbers, then Insertion Order for strings
+Object Keys: Default to Numerical for numbers, then Insertion Order for strings 
  */

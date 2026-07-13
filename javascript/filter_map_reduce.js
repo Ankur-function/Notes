@@ -136,7 +136,7 @@ console.log(doubled[0].val);  // Output: 2
 Scenario A: The normal loop is inside a function :-
 
 If the loop is inside a function, return will exit the entire function immediately. This means the loop stops, and any code after the loop (inside that function) is ignored.
-javascript
+
 function testLoop() {
   const nums = [1, 2, 3, 4];
   for (let i = 0; i < nums.length; i++) {
@@ -149,6 +149,3 @@ function testLoop() {
 testLoop();
 // Output: 1
  */
-
-
-

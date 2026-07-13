@@ -26,7 +26,7 @@
 
 //-----------------------------------------------------------Sets----------------------------------------------------------------------
 //It is also iterable
-//Stores data of any type(but must be iterable for e.g. strings,array)
+//Stores data of any type :- Numbers, Strings, Booleans, null, undefined, Symbols, Objects, Arrays, even other Sets or Functions.
 //Sets also have it's own method(e.g. add, has etc).
 //No index based index
 //Can't use .length property to get size
@@ -41,9 +41,9 @@ numbers.add(3);
 numbers.add(4);
 numbers.add(5);
 numbers.add(6);
-numbers.add(items);
+// numbers.add(items);
 
-// console.log(numbers);
+//  console.log(numbers);
 
 //---------------------------------------------------------Maps--------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ numbers.add(items);
 //store data in ordered fashion
 //store key value pair(like object)
 //duplicate keys are not allowed like sets
-//objects can only have strings or symbol as keys but in Maps you can have anaything as keys like array,string,number,object.
+//objects can only have strings or symbol as keys but in Maps you can have anything as keys like array,string,number,object.
 
 const person = new Map();
 person.set('firstName','Ankur');
@@ -61,8 +61,8 @@ person.set(1,'one');
 person.set([5,9,11],'Ankur Raj');
 person.set({3:'three'},'Raj Ankur')
 // console.log(person.get(1));
-// console.log(person);
-// console.log(person.keys());
+ //console.log(person);
+ //console.log(person.keys());
 
 // for(let [key,value] of person){
 //     console.log(key,value);   
@@ -70,6 +70,27 @@ person.set({3:'three'},'Raj Ankur')
 
 //another way to create Map :-
 const personName = new Map([['firstName','Ankur'],['lastName','Raj']]);
-console.log(personName);
+// console.log(personName);
 
+/**
+   ⚖️ Map vs. Object :-
+
+In an interview, you must know why you would choose a Map over a plain Object {}.
+
+Feature 	        Object {}	                            Map 🗺️
+Key Types	        Strings or Symbols only	                Anything (Functions, Objects, Numbers)
+Size	            Manual (Object.keys(obj).length)	    Automatic (map.size)
+Order	            Not strictly guaranteed	                Guaranteed insertion order
+Performance	        Good	                                Better for frequent adding/removing
+Iteration	        Needs Object.entries()	                Directly iterable (for...of)
+
+
+
+🚩 When to use a Map :-
+
+When keys are not strings (e.g., mapping a DOM element to some data).
+When you need to constantly add and remove pairs (faster memory management).
+When you need to maintain the exact order of items.
+When you need to quickly get the size of the collection.
+ */
 

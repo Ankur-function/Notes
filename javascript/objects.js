@@ -92,7 +92,7 @@ const users = [
 
 // console.log(Object.values(tinderUser)); // VVI ,it will give all object values inside array.
 
-// console.log(Object.entries(tinderUser));
+ console.log(Object.entries(tinderUser));
 // console.log(tinderUser.hasOwnProperty('isLoggedIn')); //hasOwnProperty it checks wether this field exist or not in tinderUser object.
 
 //-----------------------------------------------------------------------------------------------------------------------------
